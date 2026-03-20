@@ -13,21 +13,36 @@ body{
 header h1{
     text-align: center;
     font-weight: 500;
-    font-size: 2rem;
-    padding: 40px 20px 20px;
+    font-size: 2.2rem;
+    padding: 40px 20px 10px;
     letter-spacing: -0.5px;
     margin: 0;
+
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+header p{
+    text-align: center;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: black;
+    margin: 0;
+    padding: 0 20px 20px;
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
 }
 header span{
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin-left: 12px;
-    padding: 6px 14px;
-    background: var(--primary-color);
+    margin-left: 6px;
+    padding: 8px 16px;
+    background: transparent;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(140, 28, 28, 0.12);
+    box-shadow: none;
     transition: all 0.3s ease;
     position: relative;
     font-size: 0.75rem;
@@ -40,15 +55,22 @@ header span{
 
 header span:hover{
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(140, 28, 28, 0.16);
+    box-shadow: none;
 }
 
 header span img{
-    height: 24px;
-    width: 24px;
+    height: 40px;
+    width: 40px;
     display: block;
     vertical-align: middle;
-    filter: none;
+    filter: brightness(1.1) contrast(1.1);
+    border-radius: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+header span:hover img{
+    transform: scale(1.05);
 }
 
 
