@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideales - MRD Blog</title>
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preload" href="css/normalize.css" as="style">
+    <link rel="stylesheet" href="css/normalize.css">
+</head>
+<body>
+    
+    <header>
+        <h1>Pilares del MRD <span>MRD</span></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="ideales.html">Pilares</a></li>
+            <li><a href="proyecto-de-partido.html">Proyecto de Gobierno</a></li>
+            <li><a href="blog.html">Libros</a></li>
+        </ul>
+    </nav>
+
+    <div class="conteiner">
+        <section>
+            <h2>Nuestros Pilares</h2>
+            <p>Estos son los 5 pilares donde se ascienta el MRD como partido</p>
+        </section>
+    </div>
+
+    <main>
+        <div class="conteiner_main">
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976834/img/sanear-la-justiacia_jm8vtx.jpg" alt="Democracia Participativa">
+                <h2>1) Sanear la Justicia</h2>
+                <p></p>
+            </section>
+
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976827/img/adecentar_la_politica_ko7udm.jpg" alt="Transparencia Total">
+                <h2>2) Adecentar la politica</h2>
+                <p></p>
+            </section>
+
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976818/img/recuperar-lo-robado_zulvgf.jpg" alt="Justicia Social">
+                <h2>3) Recuperar lo robado</h2>
+                <p></p>
+            </section>
+
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976800/img/recuperar-el-pais_s4yldd.jpg" alt="Inclusión y Diversidad">
+                <h2>4) Recuperar el Pais</h2>
+                <p></p>
+            </section>
+
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976826/img/amor-por-el-pais_qfxjoz.jpg" alt="Desarrollo Sostenible">
+                <h2>5) Refundar la Nación</h2>
+                <p></p>
+            </section>
+
+            
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Movimiento Rescate Democrático</h3>
+                <p>Trabajando por la recuperación democrática de nuestro país y el bienestar de todos sus ciudadanos.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ideales.html">Pilares</a></li>
+                    <li><a href="proyecto-de-partido.html">Proyecto</a></li>
+                    <li><a href="blog.html">Libros</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: noemail@mrd.org<br>YouTube : Movimiento Rescate Democratico</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Movimiento Rescate Democrático. Todos los derechos reservados. <br> by Junior Sosa</p>
+        </div>
+    </footer>
+
+    <script>
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScroll > lastScrollTop && currentScroll > 100) {
+                nav.classList.add('nav-hidden');
+            } else {
+                nav.classList.remove('nav-hidden');
+            }
+            
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    </script>
+</body>
+</html>

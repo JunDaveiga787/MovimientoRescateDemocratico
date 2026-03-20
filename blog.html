@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Libros - MRD</title>
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preload" href="css/normalize.css" as="style">
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <style>
+        /* Tamaños de portada de libro solo para blog.html */
+        .blog_main img {
+            height: 450px !important;
+        }
+
+        /* Estilos para autor del libro */
+        .book-author {
+            font-size: 0.9rem;
+            color: #8C1C1C;
+            font-weight: 500;
+            margin: 8px 0 12px 0 !important;
+            letter-spacing: -0.2px;
+        }
+
+        /* Estilos para precio */
+        .book-price {
+            font-size: 1.4rem;
+            color: #8C1C1C;
+            font-weight: 700;
+            margin: 16px 0 24px 0 !important;
+            letter-spacing: -0.3px;
+            display: block;
+            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid #8C1C1C;
+            margin-top: auto !important;
+        }
+
+        /* Altura mínima para artículos de libros */
+        .blog_main {
+            min-height: 850px;
+        }
+
+        /* Estilos para descripción con desvanecido */
+        .book-description {
+            position: relative;
+            max-height: 120px;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            transition: all 0.3s ease;
+        }
+
+        /* Quitar desvanecido en hover (desktop) */
+        .blog_main:hover .book-description {
+            max-height: none;
+            -webkit-mask-image: none;
+            mask-image: none;
+        }
+
+        /* Quitar desvanecido al tocar (móvil) */
+        .book-description.expanded {
+            max-height: none;
+            -webkit-mask-image: none;
+            mask-image: none;
+        }
+
+        @media (max-width: 768px) {
+            .blog_main img {
+                height: 390px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog_main img {
+                height: 340px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Tienda de Libros<span>MRD</span></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="ideales.html">Pilares</a></li>
+            <li><a href="proyecto-de-partido.html">Proyecto de Gobierno</a></li>
+            <li><a href="blog.html">Libros</a></li>
+        </ul>
+    </nav>
+
+    <div class="conteiner">
+        <section>
+            <h2>Tienda de Libros MRD</h2>
+            <p>Descubre nuestras publicaciones sobre política, liderazgo, democracia y transformación social</p>
+        </section>
+    </div>
+
+    <main>
+        <div class="conteiner_main">
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976903/img%20libros/como_ser_un_gran_dominicano_onubqb.jpg" alt="Rescate Democrático">
+                <h2>Como ser un gran Dominicano</h2>
+                <p class="book-author">Por Fausto Junior Sosa</p>
+                <p class="book-description">Un manual para saber como ser un gran Dominicano en tiempos dificiles como estos donde Los Dominicanos estamos siendo atacados y este libro nos recuerda que debemos unirnos y nos recuerda como los trinitarios pelearon por nuestro pais que nosotros tambien lo hagamos.</p>
+                <strong class="book-price">Gratis</strong>
+                <a href="libros/Como ser un  gran  Dominicano version.3.0 .pdf" class="btn-download">⬇ Descargar</a>
+            </section>
+
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976898/img%20libros/enigma_ivzt5o.jpg" alt="Liderazgo para el Cambio">
+                <h2>Enigma</h2>
+                <p class="book-author">Por Melvin Mañon</p>
+                <p class="book-description">El libro ENIGMA fue escrito con una intencion: tratar de explicar el exito del Partido de la Liberacion Dominicana (PLD) y de Leonel Fernandez para mantenerse en el poder, por medios legitimos e ilegitimos, y hacerlo de una manera que permitiera aprender de errores propios y que, como resultado y aprovechamiento de esto, pueda ser util en la lucha contra la corporacion PLD y su legado.</p>
+                <strong class="book-price">$18.17</strong>
+                <a href="https://www.amazon.com/-/es/ENIGMA-audiolibro/dp/B00FZ5BVI0/ref=sr_1_1?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1NOOHTQ9KDJRF&dib=eyJ2IjoiMSJ9.KUyxy60qNDMXCm_GhEVQeQ.ex9Ix_YYL1bPShP-HF1UkbaYB2BwKLQRyGQHL660qIQ&dib_tag=se&keywords=enigma+melvin+ma%C3%B1on&qid=1773973463&sprefix=enigma+melvin+ma%C3%B1o%2Caps%2C403&sr=8-1" class="btn-download">Comprar</a>
+            </section>
+
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976902/img%20libros/LA_CIA_EN_LA_REPU%CC%81BLICA_DOMINICANA_f1djir.png" alt="Patriotismo Moderno">
+                <h2>LA CIA EN LA REPÚBLICA DOMINICANA </h2>
+                <p class="book-author">Por Esteban Rosario</p>
+                <p class="book-description">La ejecución del dictador Rafael Leónidas Trujillo Molina en 1961, abonó el camino para que la Agencia Central Inteligencia (CIA) controlara la estructura del poder nacional. La CIA controló el Estado dominicano en todas sus estructuras.Infiltró las fuerzas armadas. Los ministerios. Direcciones generales. La Policía Nacional. Los partidos políticos.Universidades y medios de comunicación. En 1961.</p>
+                <strong class="book-price">$12.00</strong>
+                <a href="https://www.amazon.com/-/es/CIA-EN-REP%C3%9ABLICA-DOMINICANA-Spanish/dp/1096469243/ref=sr_1_19?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=FIPYZX6MU8QN&dib=eyJ2IjoiMSJ9.ZgkP006VWfUaaTN0xni66Df2Y03QpE9GPvVdkoEHA0g.6goJKmnEG-49cm2-hyG7FmF24Lo3CgaklQ1ciu2WsRI&dib_tag=se&keywords=dominicano+libro&qid=1773974540&sprefix=dominicano+libr%2Caps%2C403&sr=8-19&xpid=uPXs1-KvO2FV8" class="btn-download">Comprar</a>
+            </section>
+
+            <section class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976904/img%20libros/TRUJILLO_VERDADES_INCO%CC%81MODA_ducyv8.png" alt="Patriotismo Moderno">
+                <h2>TRUJILLO - VERDADES INCÓMODAS: Sorpresas de una Democradura </h2>
+                <p class="book-author">Por Damian Arias Matos</p>
+                <p class="book-description">Este libro no es para probar la bondad o maldad de Trujillo. Eso seria desperdiciar capacidad de análisis y no aportar nada a la revisión critica de la Era de Trujillo, no a su persona.</p>
+                <strong class="book-price">$10.95</strong>
+                <a href="https://www.amazon.com/-/es/CIA-EN-REP%C3%9ABLICA-DOMINICANA-Spanish/dp/1096469243/ref=sr_1_19?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=FIPYZX6MU8QN&dib=eyJ2IjoiMSJ9.ZgkP006VWfUaaTN0xni66Df2Y03QpE9GPvVdkoEHA0g.6goJKmnEG-49cm2-hyG7FmF24Lo3CgaklQ1ciu2WsRI&dib_tag=se&keywords=dominicano+libro&qid=1773974540&sprefix=dominicano+libr%2Caps%2C403&sr=8-19&xpid=uPXs1-KvO2FV8" class="btn-download">Comprar</a>
+            </section>
+
+            
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Movimiento Rescate Democrático</h3>
+                <p>Trabajando por la recuperación democrática de nuestro país y el bienestar de todos sus ciudadanos.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="ideales.html">Pilares</a></li>
+                    <li><a href="proyecto-de-partido.html">Proyecto</a></li>
+                    <li><a href="blog.html">Libros</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: noemail@mrd.org<br>YouTube : Movimiento Rescate Democratico</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Movimiento Rescate Democrático. Todos los derechos reservados. <br> by Junior Sosa</p>
+        </div>
+    </footer>
+
+    <script>
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScroll > lastScrollTop && currentScroll > 100) {
+                nav.classList.add('nav-hidden');
+            } else {
+                nav.classList.remove('nav-hidden');
+            }
+            
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // Manejar touch en descripciones de libros para expandir
+        const descriptions = document.querySelectorAll('.book-description');
+        descriptions.forEach(desc => {
+            desc.addEventListener('touchstart', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+    </script>
+</body>
+</html>
