@@ -671,3 +671,89 @@ footer{
         aspect-ratio: 16 / 9; /* En móviles vuelve al formato estándar */
     }
 }
+
+/*meadia query*/
+/* Tarjeta que ocupa 2 columnas con video arriba y texto abajo */
+.card-video-full {
+    grid-column: span 2; /* Se extiende hacia la derecha ocupando dos espacios */
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    padding: 0 !important; /* El video toca los bordes para un acabado profesional */
+    overflow: hidden;
+    height: 100%; /* Mantiene el mismo largo que los demás artículos */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Contenedor del Iframe de YouTube */
+.video-header {
+    width: 100%;
+    aspect-ratio: 21 / 9; /* Formato panorámico para no ser excesivamente alto */
+    background: #000;
+}
+
+.video-header iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Contenedor del texto debajo del video */
+.video-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.video-body h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 10px !important;
+    color: var(--primary-color) !important; /* Uso del color institucional #8C1C1C */
+}
+
+.video-body p {
+    font-size: 0.95rem !important;
+    line-height: 1.6;
+    margin-bottom: 20px !important;
+    color: #6f6f77;
+}
+
+@media (max-width: 480px) {
+    /* ... otros estilos existentes ... */
+
+    .blog_main .btn-download {
+        padding: 12px 24px; /* Reducimos el padding */
+        font-size: 0.9rem;
+        width: auto; /* Cambiamos de 100% a auto */
+        display: inline-flex; /* Permite que el botón solo ocupe su contenido */
+        align-self: center; /* Lo centra si el contenedor es flex */
+        margin: 16px auto 0 auto; /* Centrado horizontal con márgenes */
+        min-height: 40px;
+    }
+
+    .video-body {
+        align-items: center; /* Centra el botón y el texto en la tarjeta de video */
+        text-align: center;
+    }
+}
+@media (max-width: 768px) {
+    .video-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra el botón horizontalmente */
+        text-align: center;
+    }
+}
+@media (max-width: 768px) {
+    .video-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra el botón horizontalmente */
+        text-align: center;
+    }
+}
