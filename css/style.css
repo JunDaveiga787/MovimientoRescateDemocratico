@@ -618,3 +618,56 @@ footer{
         font-size: 0.75rem;
     }
 }
+/*video*/
+
+/* Tarjeta de 2 columnas con video arriba y texto abajo */
+.card-video-full {
+    grid-column: span 2; /* Se extiende a la derecha */
+    display: flex;
+    flex-direction: column; /* Video arriba, texto abajo */
+    padding: 0 !important; /* El video toca los bordes para verse más profesional */
+    overflow: hidden;
+    height: 100%; /* Se alinea al largo de los otros artículos */
+}
+
+.video-header {
+    width: 100%;
+    aspect-ratio: 21 / 9; /* Formato panorámico para que no sea demasiado alto */
+    background: #000;
+}
+
+.video-header iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.video-body h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 10px !important;
+    color: var(--primary-color);
+}
+
+.video-body p {
+    font-size: 0.95rem !important;
+    margin-bottom: 20px !important;
+    line-height: 1.6;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .card-video-full {
+        grid-column: span 1;
+    }
+    .video-header {
+        aspect-ratio: 16 / 9; /* En móviles vuelve al formato estándar */
+    }
+}
