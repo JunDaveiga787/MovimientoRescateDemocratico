@@ -39,20 +39,19 @@
         </div>
 
         <div class="conteiner_main" id="mrd-feed">
-            
-            <section class="blog_main card-video-full">
-                <div class="video-header">
-                    <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/xZntqgzZd_0" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video-body">
-                    <small>Destacado</small>
-                    <h2>CENTRO DE PENSAMIENTO DEL MRD (parte 2)</h2>
-                    <p>Programa Aluzando 15 Años - Episodio #15</p>
-                    <a href="https://www.youtube.com/@RescateDemocratico" class="btn-download">Ver Canal</a>
-                </div>
-            </section>
-
-            </div>
+    <section class="blog_main card-video-full">
+        <div class="video-header">
+            <iframe id="main-iframe" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video-body">
+            <small>Destacado</small>
+            <h2 id="main-vid-title">Cargando...</h2>
+            <p id="main-vid-desc">Espere un momento...</p>
+            <a href="https://www.youtube.com/@RescateDemocratico" class="btn-download">Ver Canal</a>
+        </div>
+    </section>
+    
+    </div>
     </main>
 
     <footer>
@@ -108,6 +107,81 @@
             else nav.classList.remove('nav-hidden');
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
+
+        // Dentro de tu script de Firebase en index.html
+const db = firebase.database();
+
+// ESCUCHAR CAMBIOS DEL VIDEO DESTACADO
+db.ref('configuracion/videoDestacado').on('value', (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+        // Actualiza el video
+        document.getElementById('main-iframe').src = `https://www.youtube-nocookie.com/embed/${data.id}`;
+        // Actualiza el texto
+        document.getElementById('main-vid-title').innerText = data.titulo;
+        document.getElementById('main-vid-desc').innerText = data.descripcion;
+    }
+});
+
+// (Tu código anterior de 'articulos' sigue debajo igual...)
+
     </script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+
+<script>
+    // Configuración de tu base de datos
+    const configMRD = {
+        apiKey: "BG8qmwxVTS10uX8oB45l62Ta8DSfqlPrEMr7xtOd4S4ybcDT1xlnCxZQFen9fVb5yHok0FKdaEXQdOe1NRWBnSU",
+        authDomain: "mrd-store-a1316.firebaseapp.com",
+        databaseURL: "https://mrd-store-a1316-default-rtdb.firebaseio.com",
+        projectId: "mrd-store-a1316"
+    };
+
+    // Inicializar Firebase
+    if (!firebase.apps.length) firebase.initializeApp(configMRD);
+    const database = firebase.database();
+    const feedContainer = document.getElementById('mrd-feed');
+
+    // --- 1. ACTUALIZAR VIDEO Y TEXTO DE PORTADA ---
+    database.ref('configuracion/videoDestacado').on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+            const iframe = document.getElementById('main-iframe');
+            const titulo = document.getElementById('main-vid-title');
+            const desc = document.getElementById('main-vid-desc');
+
+            if(iframe) iframe.src = `https://www.youtube-nocookie.com/embed/${data.id}`;
+            if(titulo) titulo.innerText = data.titulo;
+            if(desc) desc.innerText = data.descripcion;
+        }
+    });
+
+    // --- 2. CARGAR PUBLICACIONES (IMÁGENES) ---
+    database.ref('articulos').on('value', (snapshot) => {
+        // Borramos publicaciones viejas para que no se dupliquen (manteniendo el video)
+        document.querySelectorAll('.dynamic-post').forEach(el => el.remove());
+
+        const data = snapshot.val();
+        if (data) {
+            // Convertimos a array y revertimos para ver lo más nuevo primero
+            Object.keys(data).reverse().forEach(key => {
+                const post = data[key];
+                const html = `
+                    <section class="blog_main dynamic-post">
+                        <img src="${post.image}" alt="${post.title}">
+                        <div class="video-body">
+                            <small style="color: #8C1C1C; font-weight: bold;">${post.date || 'NOTICIA'}</small>
+                            <h2>${post.title}</h2>
+                            <p>${post.content}</p>
+                        </div>
+                    </section>
+                `;
+                feedContainer.insertAdjacentHTML('beforeend', html);
+            });
+        }
+    });
+</script>
 </body>
 </html>
