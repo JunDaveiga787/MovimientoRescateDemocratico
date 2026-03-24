@@ -3,58 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin MRD - Acceso Privado</title>
+    <title>Panel de Administración - MRD</title>
     <style>
-        :root { --primary: #8C1C1C; --bg: #f5f5f7; }
+        :root { --primary: #8C1C1C; --bg: #f5f5f7; --dark: #1d1d1f; }
         
-        /* Ocultar contenido por defecto */
-        #admin-content { display: none; }
+        /* Estado inicial: Oculto */
+        #admin-content { display: none; width: 100%; max-width: 800px; }
 
-        body { font-family: 'Jost', sans-serif; background: var(--bg); padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--dark); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 500px; margin-bottom: 30px; }
-        h2 { color: var(--primary); margin-top: 0; text-align: center; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #e1e1e1; }
+        h2 { color: var(--primary); margin-top: 0; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
         
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit; }
-        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        button:hover { background: #621313; }
-
-        /* Estilos de la lista de gestión */
-        .post-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; gap: 10px; }
+        label { display: block; font-weight: 600; margin-top: 10px; font-size: 0.9rem; }
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit; }
+        
+        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; margin-top: 10px; }
+        button:hover { background: #621313; transform: translateY(-2px); }
+        .btn-secondary { background: #333; }
+        
+        /* Listado de artículos */
+        .post-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; gap: 15px; }
         .post-info { flex-grow: 1; }
-        .post-info span { display: block; font-weight: bold; font-size: 0.9rem; }
-        .post-info small { color: #666; font-size: 0.8rem; }
-        .btn-delete { width: auto; padding: 8px 12px; background: #ff4444; font-size: 0.8rem; }
+        .post-info span { display: block; font-weight: bold; }
+        .post-info small { color: #666; }
+        .btn-delete { width: auto; background: #ff4444; padding: 8px 15px; font-size: 0.8rem; margin: 0; }
         .btn-delete:hover { background: #cc0000; }
-        .img-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; }
+        .img-preview { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
 
-        #error-msg { color: #8C1C1C; text-align: center; display: none; margin-top: 100px; font-weight: bold; }
+        #error-msg { color: var(--primary); text-align: center; display: none; margin-top: 100px; }
     </style>
 </head>
 <body>
 
     <div id="error-msg">
-        <h1>ACCESO RESTRINGIDO</h1>
-        <p>Contraseña incorrecta. Recarga la página para intentar de nuevo.</p>
+        <h1>Acceso Denegado</h1>
+        <p>Contraseña incorrecta. Refresca la página para reintentar.</p>
     </div>
 
     <div id="admin-content">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h1 style="margin:0; font-size: 1.5rem;">Panel MRD</h1>
+            <button onclick="location.reload()" class="btn-secondary" style="width: auto; padding: 8px 20px;">Cerrar Sesión</button>
+        </header>
+
         <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="margin:0;">Nueva Noticia</h2>
-                <button onclick="location.reload()" style="width: auto; padding: 5px 10px; background: #333;">Salir</button>
-            </div>
+            <h2>Video Destacado (Cabecera)</h2>
+            <label>URL o ID de YouTube:</label>
+            <input type="text" id="vid-id" placeholder="Ej: https://www.youtube.com/watch?v=xZntqgzZd_0">
             
-            <input type="text" id="titulo" placeholder="Título de la publicación">
-            <input type="text" id="url" placeholder="URL de la Imagen (Cloudinary/Imgur)">
-            <textarea id="texto" rows="4" placeholder="Escribe el contenido aquí..."></textarea>
-            <button onclick="publicar()">PUBLICAR EN EL INDEX</button>
+            <label>Título del Video:</label>
+            <input type="text" id="vid-titulo" placeholder="Título que se verá en el index">
+            
+            <label>Descripción:</label>
+            <textarea id="vid-desc" rows="2" placeholder="Breve descripción debajo del título"></textarea>
+            
+            <button onclick="actualizarVideoDestacado()" style="background: #2c3e50;">Actualizar Portada</button>
+        </div>
+
+        <div class="card">
+            <h2>Publicar Nueva Noticia</h2>
+            <label>Título de la noticia:</label>
+            <input type="text" id="post-titulo" placeholder="Ej: Gran avance en el proyecto">
+            
+            <label>URL de la Imagen:</label>
+            <input type="text" id="post-url" placeholder="Enlace de la imagen (Cloudinary, Imgur, etc)">
+            
+            <label>Contenido:</label>
+            <textarea id="post-contenido" rows="4" placeholder="Cuerpo de la noticia..."></textarea>
+            
+            <button onclick="publicarNoticia()">Publicar Noticia</button>
         </div>
 
         <div class="card">
             <h2>Gestionar Publicaciones</h2>
             <div id="lista-publicaciones">
-                <p style="text-align:center;">Cargando lista...</p>
+                <p style="text-align:center;">Cargando artículos...</p>
             </div>
         </div>
     </div>
@@ -63,21 +87,20 @@
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
 
     <script>
-        // --- SEGURIDAD ---
-        const CLAVE_CORRECTA = "MRD2024";
+        const CLAVE_ACCESO = "MRD2024";
 
+        // Verificación de seguridad inmediata
         (function verificar() {
-            const intento = prompt("Ingrese la contraseña de administrador:");
-            if (intento === CLAVE_CORRECTA) {
+            const pass = prompt("Contraseña de Administrador:");
+            if (pass === CLAVE_ACCESO) {
                 document.getElementById('admin-content').style.display = 'block';
-                iniciarApp();
+                iniciarFirebase();
             } else {
                 document.getElementById('error-msg').style.display = 'block';
             }
         })();
 
-        // --- LÓGICA DE LA APLICACIÓN ---
-        function iniciarApp() {
+        function iniciarFirebase() {
             const firebaseConfig = {
                 apiKey: "BG8qmwxVTS10uX8oB45l62Ta8DSfqlPrEMr7xtOd4S4ybcDT1xlnCxZQFen9fVb5yHok0FKdaEXQdOe1NRWBnSU",
                 authDomain: "mrd-store-a1316.firebaseapp.com",
@@ -85,31 +108,50 @@
                 projectId: "mrd-store-a1316"
             };
 
-            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+            firebase.initializeApp(firebaseConfig);
             const db = firebase.database();
 
-            // Función para Publicar
-            window.publicar = function() {
-                const t = document.getElementById('titulo').value;
-                const u = document.getElementById('url').value;
-                const x = document.getElementById('texto').value;
+            // --- FUNCIÓN: ACTUALIZAR VIDEO ---
+            window.actualizarVideoDestacado = function() {
+                let url = document.getElementById('vid-id').value;
+                let titulo = document.getElementById('vid-titulo').value;
+                let desc = document.getElementById('vid-desc').value;
 
-                if (!t || !u || !x) return alert("Por favor, completa todos los campos.");
+                // Limpiar ID de Youtube
+                let id = url.includes('v=') ? url.split('v=')[1].split('&')[0] : 
+                         url.includes('be/') ? url.split('be/')[1].split('?')[0] : url;
+
+                if(!id || !titulo) return alert("ID y Título son obligatorios");
+
+                db.ref('configuracion/videoDestacado').set({
+                    id: id,
+                    titulo: titulo,
+                    descripcion: desc
+                }).then(() => alert("¡Portada actualizada!"));
+            };
+
+            // --- FUNCIÓN: PUBLICAR NOTICIA ---
+            window.publicarNoticia = function() {
+                const t = document.getElementById('post-titulo').value;
+                const u = document.getElementById('post-url').value;
+                const c = document.getElementById('post-contenido').value;
+
+                if(!t || !u) return alert("Título e Imagen son obligatorios");
 
                 db.ref('articulos').push({
                     title: t,
                     image: u,
-                    content: x,
+                    content: c,
                     date: new Date().toLocaleDateString('es-DO', { day: 'numeric', month: 'short' })
                 }).then(() => {
-                    alert("¡Publicación exitosa!");
-                    document.getElementById('titulo').value = "";
-                    document.getElementById('url').value = "";
-                    document.getElementById('texto').value = "";
+                    alert("¡Noticia publicada!");
+                    document.getElementById('post-titulo').value = "";
+                    document.getElementById('post-url').value = "";
+                    document.getElementById('post-contenido').value = "";
                 });
             };
 
-            // Función para Listar y Borrar
+            // --- FUNCIÓN: LISTAR Y BORRAR ---
             db.ref('articulos').on('value', (snapshot) => {
                 const container = document.getElementById('lista-publicaciones');
                 container.innerHTML = "";
@@ -130,12 +172,12 @@
                         `;
                     });
                 } else {
-                    container.innerHTML = "<p style='text-align:center;'>No hay publicaciones activas.</p>";
+                    container.innerHTML = "<p style='text-align:center;'>No hay noticias publicadas.</p>";
                 }
             });
 
             window.borrarPost = function(id) {
-                if (confirm("¿Estás seguro de eliminar esta publicación de forma permanente?")) {
+                if (confirm("¿Seguro que quieres borrar esta noticia permanentemente?")) {
                     db.ref('articulos/' + id).remove();
                 }
             };
