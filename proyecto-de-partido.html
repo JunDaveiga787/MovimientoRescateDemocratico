@@ -1,26 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto de Partido - MRD Blog</title>
-
-    <!--Fonts-->
+    <title>Proyecto de Gobierno - MRD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-
-    <link rel="preload" href="css/normalize.css" as="style">
     <link rel="stylesheet" href="css/normalize.css">
+    <style>
+        /* ESTÉTICA COMPACTA Y LIMPIA */
+        .proyecto-card {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #efefef;
+            margin-bottom: 25px;
+            transition: transform 0.2s ease;
+        }
+
+        .proyecto-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .proyecto-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .proyecto-body {
+            padding: 20px;
+        }
+
+        .proyecto-body h2 {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.5rem;
+            color: #1d1d1f;
+            margin: 5px 0 10px 0;
+            line-height: 1.2;
+        }
+
+        .proyecto-content {
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .date-text {
+            color: #8C1C1C;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #no-content-msg {
+            text-align: center;
+            padding: 50px;
+            color: #888;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
-    
     <header>
-        <h1>Movimiento Rescate Democratico </h1>
-        <p>Dios, Patria y libertad</p>
+        <h1>Movimiento Rescate Democrático</h1>
+        <p>Dios, Patria y Libertad</p>
     </header>
 
     <nav>
@@ -34,64 +87,16 @@
 
     <div class="conteiner">
         <section>
-            <h2>Proyecto de Gobierno</h2>
-            <p>Nuestra propuesta integral para transformar el país</p>
+            <h2>Nuestro Proyecto de Gobierno</h2>
+            <p>Propuestas oficiales publicadas por nuestra organización.</p>
         </section>
     </div>
 
-    <main>
-        <div class="conteiner_main">
-
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976883/img_proyecto_de_partido/juan_pablo_duarte_wij2f8.jpg" alt="Infraestructura Moderna">
-                <h2>Seguir los ideales de Juan Pablo Duarte</h2>
-                <p>Retomar la esencia del Padre de la Patria significa priorizar la soberanía absoluta, la libertad sin condiciones y la dignidad del pueblo dominicano. No se trata solo de recordar su nombre, sino de encarnar su visión de una nación independiente, justa y libre de influencias extranjeras que menoscaben nuestra identidad.</p>
-            </section>
-
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976829/img/patriotismo_wchrfw.jpg" alt="Reforma Política">
-                <h2>Refundar la nacion</h2>
-                <p>Refundar la República Dominicana implica construir un nuevo pacto social basado en la ética, la transparencia y el respeto a la ley. Es el momento de dejar atrás las prácticas del pasado para establecer instituciones sólidas donde la ciudadanía sea la verdadera protagonista y el Estado sirva exclusivamente al interés común.</p>
-            </section>
-
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976852/img_proyecto_de_partido/migracion_tp5hxi.webp" alt="Economía Productiva">
-                <h2>Sacar a todos los Haitianos</h2>
-                <p>Vamos a sacar a todos los hatianos a todos, y a los que van a entrar a trabajar le haremos reconocimiento biometricos para saber donde esta y quien es y que cada tres meses tengan que volver a haiti y asi mantener una migracion ultra controlada.</p>
-            </section>
-
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976873/img_proyecto_de_partido/empleos_drrrwv.jpg" alt="Salud para Todos">
-                <h2>Crear empleos y oportunidades</h2>
-                <p>El verdadero desarrollo se mide por la capacidad de cada dominicano para sostenerse con dignidad. Debemos impulsar un modelo económico que fomere el emprendimiento local, atraiga inversión responsable y elimine las barreras burocráticas, creando un ecosistema donde el talento y el esfuerzo sean recompensados con empleo estable y perspectivas de crecimiento real.</p>
-            </section>
-
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976861/img_proyecto_de_partido/dubai_del_caribe_blgfhd.jpg" alt="Educación de Excelencia">
-                <h2>Crear la Dubai del Caribe</h2>
-                <p>Imaginemos una República Dominicana transformada en un centro global de innovación, turismo de lujo y comercio internacional. Con una infraestructura de vanguardia, regulaciones favorables y una visión audaz, podemos convertirnos en el "Dubái del Caribe", atrayendo capitales mundiales y posicionándonos como el motor económico más dinámico de la región.</p>
-            </section>
-
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976857/img_proyecto_de_partido/politico-arrestado_kjpgll.jpg" alt="Seguridad Ciudadana">
-                <h2>Pasarle cuentas a los politicos de lo robado</h2>
-                <p>La justicia no puede ser selectiva. Es imperativo investigar, juzgar y sancionar a todos aquellos funcionarios públicos que han desviado fondos estatales o enriquecido ilícitamente. Cada peso robado debe ser recuperado y devuelto al erario público, estableciendo un precedente de impunidad cero que restaure la confianza del pueblo en sus gobernantes.</p>
-            </section>
-
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976868/img_proyecto_de_partido/infraestructura_moderna_wgbmy6.jpg" alt="Infraestructura Moderna">
-                <h2>Infraestructura Moderna y de calidad</h2>
-                <p>Una nación potente requiere caminos, puentes, puertos y servicios públicos que estén a la altura de las exigencias del siglo XXI. Debemos invertir en obras duraderas, sostenibles y eficientes que conecten al país, faciliten el comercio y mejoren la calidad de vida de cada familia, eliminando el atraso que ha frenado nuestro progreso por décadas.</p>
-            </section>
-
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976858/img_proyecto_de_partido/mejorar_educacion_wgajny.jpg" alt="Infraestructura Moderna">
-                <h2>Mejora de la Educacion</h2>
-                <p>La educación es la herramienta más poderosa para romper el ciclo de la pobreza y formar ciudadanos críticos. Necesitamos un sistema educativo moderno, inclusivo y de excelencia que valore a los maestros, integre la tecnología y enseñe habilidades para el futuro, garantizando que ningún niño dominicano quede rezagado por falta de oportunidades.</p>
-            </section>
-        </div>
+    <main class="conteiner_main" id="proyectos-container">
+        <div id="proyectos-dinamicos" style="display: contents;"></div>
     </main>
 
+    <!--footer-->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -117,19 +122,45 @@
         </div>
     </footer>
 
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+    
     <script>
-        let lastScrollTop = 0;
-        const nav = document.querySelector('nav');
+        const config = { databaseURL: "https://mrd-store-a1316-default-rtdb.firebaseio.com" };
+        if (!firebase.apps.length) firebase.initializeApp(config);
+        const db = firebase.database();
 
+        // Cargar Proyectos desde Firebase
+        db.ref('proyectoPartido').on('value', (snapshot) => {
+            const container = document.getElementById('proyectos-dinamicos');
+            container.innerHTML = ""; 
+            const data = snapshot.val();
+            
+            if (data) {
+                Object.keys(data).reverse().forEach(key => {
+                    const p = data[key];
+                    container.innerHTML += `
+                        <article class="proyecto-card">
+                            <img src="${p.image}" alt="${p.title}">
+                            <div class="proyecto-body">
+                                <span class="date-text">Propuesta - ${p.date || 'Reciente'}</span>
+                                <h2>${p.title}</h2>
+                                <div class="proyecto-content"><p>${p.content}</p></div>
+                            </div>
+                        </article>`;
+                });
+            } else {
+                container.innerHTML = `<div id="no-content-msg">No hay propuestas publicadas actualmente.</div>`;
+            }
+        });
+
+        // Script Menú Sticky
+        let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
             let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (currentScroll > lastScrollTop && currentScroll > 100) {
-                nav.classList.add('nav-hidden');
-            } else {
-                nav.classList.remove('nav-hidden');
-            }
-            
+            const nav = document.querySelector('nav');
+            if (currentScroll > lastScrollTop && currentScroll > 100) nav.classList.add('nav-hidden');
+            else nav.classList.remove('nav-hidden');
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
     </script>

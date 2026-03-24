@@ -3,83 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración - MRD</title>
+    <title>Panel Central MRD - Gestión Total</title>
     <style>
-        :root { --primary: #8C1C1C; --bg: #f5f5f7; --dark: #1d1d1f; }
+        :root { --primary: #8C1C1C; --bg: #f5f5f7; --dark: #1d1d1f; --secondary: #2c3e50; --accent: #16a085; }
         
-        /* Estado inicial: Oculto */
-        #admin-content { display: none; width: 100%; max-width: 800px; }
-
-        body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--dark); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        #admin-content { display: none; width: 100%; max-width: 1300px; margin: 0 auto; }
+        body { font-family: 'Jost', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: var(--dark); }
         
-        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #e1e1e1; }
-        h2 { color: var(--primary); margin-top: 0; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #ddd; padding-bottom: 15px; }
         
-        label { display: block; font-weight: 600; margin-top: 10px; font-size: 0.9rem; }
-        input, textarea { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit; }
+        .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
         
-        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; margin-top: 10px; }
-        button:hover { background: #621313; transform: translateY(-2px); }
-        .btn-secondary { background: #333; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #e1e1e1; display: flex; flex-direction: column; }
         
-        /* Listado de artículos */
-        .post-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; gap: 15px; }
-        .post-info { flex-grow: 1; }
-        .post-info span { display: block; font-weight: bold; }
-        .post-info small { color: #666; }
-        .btn-delete { width: auto; background: #ff4444; padding: 8px 15px; font-size: 0.8rem; margin: 0; }
-        .btn-delete:hover { background: #cc0000; }
-        .img-preview { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
-
-        #error-msg { color: var(--primary); text-align: center; display: none; margin-top: 100px; }
+        h2 { color: var(--primary); font-size: 1.2rem; margin-top: 0; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
+        
+        label { font-size: 0.8rem; font-weight: bold; margin-top: 10px; color: #666; }
+        input, textarea { width: 100%; padding: 12px; margin: 5px 0 15px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: inherit; }
+        
+        button { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { filter: brightness(1.2); transform: translateY(-2px); }
+        
+        /* Listas de borrado */
+        .post-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+        .post-item span { font-size: 0.9rem; font-weight: 500; }
+        .btn-delete { width: auto; background: #ff4444; padding: 6px 12px; font-size: 0.75rem; margin: 0; }
+        
+        #error-msg { color: var(--primary); text-align: center; margin-top: 100px; display: none; }
     </style>
 </head>
 <body>
 
-    <div id="error-msg">
-        <h1>Acceso Denegado</h1>
-        <p>Contraseña incorrecta. Refresca la página para reintentar.</p>
-    </div>
+    <div id="error-msg"><h1>Acceso Denegado</h1></div>
 
     <div id="admin-content">
-        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h1 style="margin:0; font-size: 1.5rem;">Panel MRD</h1>
-            <button onclick="location.reload()" class="btn-secondary" style="width: auto; padding: 8px 20px;">Cerrar Sesión</button>
+        <header>
+            <div>
+                <h1 style="margin:0;">MRD Administration</h1>
+                <p style="margin:0; color:#666;">Control de contenidos del Blog v3.5</p>
+            </div>
+            <button onclick="location.reload()" style="width:auto; background:#333;">Cerrar Sesión</button>
         </header>
 
-        <div class="card">
-            <h2>Video Destacado (Cabecera)</h2>
-            <label>URL o ID de YouTube:</label>
-            <input type="text" id="vid-id" placeholder="Ej: https://www.youtube.com/watch?v=xZntqgzZd_0">
-            
-            <label>Título del Video:</label>
-            <input type="text" id="vid-titulo" placeholder="Título que se verá en el index">
-            
-            <label>Descripción:</label>
-            <textarea id="vid-desc" rows="2" placeholder="Breve descripción debajo del título"></textarea>
-            
-            <button onclick="actualizarVideoDestacado()" style="background: #2c3e50;">Actualizar Portada</button>
-        </div>
-
-        <div class="card">
-            <h2>Publicar Nueva Noticia</h2>
-            <label>Título de la noticia:</label>
-            <input type="text" id="post-titulo" placeholder="Ej: Gran avance en el proyecto">
-            
-            <label>URL de la Imagen:</label>
-            <input type="text" id="post-url" placeholder="Enlace de la imagen (Cloudinary, Imgur, etc)">
-            
-            <label>Contenido:</label>
-            <textarea id="post-contenido" rows="4" placeholder="Cuerpo de la noticia..."></textarea>
-            
-            <button onclick="publicarNoticia()">Publicar Noticia</button>
-        </div>
-
-        <div class="card">
-            <h2>Gestionar Publicaciones</h2>
-            <div id="lista-publicaciones">
-                <p style="text-align:center;">Cargando artículos...</p>
+        <div class="admin-grid">
+            <div class="card">
+                <h2>Video Portada (Home)</h2>
+                <label>URL o ID de YouTube:</label>
+                <input type="text" id="vid-id" placeholder="Ej: xZntqgzZd_0">
+                <label>Título del Video:</label>
+                <input type="text" id="vid-titulo">
+                <label>Descripción corta:</label>
+                <textarea id="vid-desc" rows="2" placeholder="Texto debajo del título..."></textarea>
+                <button onclick="actualizarVideo()" style="background: var(--secondary);">Guardar Video</button>
             </div>
+
+            <div class="card">
+                <h2>Nueva Noticia (Home)</h2>
+                <label>Título:</label>
+                <input type="text" id="idx-t">
+                <label>Imagen (URL):</label>
+                <input type="text" id="idx-u">
+                <label>Cuerpo de noticia:</label>
+                <textarea id="idx-c" rows="2"></textarea>
+                <button onclick="publicarGeneral('articulos', 'idx-t', 'idx-u', 'idx-c')">Publicar en Home</button>
+            </div>
+
+            <div class="card" style="border-top: 5px solid var(--secondary);">
+                <h2>Proyecto de Gobierno</h2>
+                <label>Tema/Propuesta:</label>
+                <input type="text" id="pro-t">
+                <label>Imagen (URL):</label>
+                <input type="text" id="pro-u">
+                <label>Explicación:</label>
+                <textarea id="pro-c" rows="2"></textarea>
+                <button onclick="publicarGeneral('proyectoPartido', 'pro-t', 'pro-u', 'pro-c')" style="background: var(--secondary);">Publicar Proyecto</button>
+            </div>
+
+            <div class="card" style="border-top: 5px solid var(--accent);">
+                <h2>Nuevo Libro (Tienda)</h2>
+                <label>Título del Libro:</label>
+                <input type="text" id="lib-t">
+                <label>Portada (URL):</label>
+                <input type="text" id="lib-u">
+                <label>Precio:</label>
+                <input type="text" id="lib-p" placeholder="Ej: $15.00 o Gratis">
+                <label>Link de Compra o Descarga:</label>
+                <input type="text" id="lib-link" placeholder="https://amazon.com/... o Google Drive">
+                <label>Reseña:</label>
+                <textarea id="lib-c" rows="2"></textarea>
+                <button onclick="publicarLibro()" style="background: var(--accent);">Publicar Libro</button>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin: 40px 0 20px;">Gestión de Contenidos Activos</h2>
+        <div class="admin-grid">
+            <div class="card"><h3>Home</h3><div id="list-index"></div></div>
+            <div class="card"><h3>Proyectos</h3><div id="list-proyecto"></div></div>
+            <div class="card"><h3>Libros</h3><div id="list-libros"></div></div>
         </div>
     </div>
 
@@ -87,100 +107,90 @@
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
 
     <script>
-        const CLAVE_ACCESO = "MRD2024";
+        const CLAVE_MAESTRA = "MRD2024";
+        const firebaseConfig = {
+            apiKey: "BG8qmwxVTS10uX8oB45l62Ta8DSfqlPrEMr7xtOd4S4ybcDT1xlnCxZQFen9fVb5yHok0FKdaEXQdOe1NRWBnSU",
+            databaseURL: "https://mrd-store-a1316-default-rtdb.firebaseio.com",
+            projectId: "mrd-store-a1316"
+        };
 
-        // Verificación de seguridad inmediata
-        (function verificar() {
-            const pass = prompt("Contraseña de Administrador:");
-            if (pass === CLAVE_ACCESO) {
+        (function init() {
+            const acceso = prompt("Ingrese clave administrativa:");
+            if (acceso === CLAVE_MAESTRA) {
                 document.getElementById('admin-content').style.display = 'block';
-                iniciarFirebase();
+                firebase.initializeApp(firebaseConfig);
+                startApp();
             } else {
                 document.getElementById('error-msg').style.display = 'block';
             }
         })();
 
-        function iniciarFirebase() {
-            const firebaseConfig = {
-                apiKey: "BG8qmwxVTS10uX8oB45l62Ta8DSfqlPrEMr7xtOd4S4ybcDT1xlnCxZQFen9fVb5yHok0FKdaEXQdOe1NRWBnSU",
-                authDomain: "mrd-store-a1316.firebaseapp.com",
-                databaseURL: "https://mrd-store-a1316-default-rtdb.firebaseio.com",
-                projectId: "mrd-store-a1316"
-            };
-
-            firebase.initializeApp(firebaseConfig);
+        function startApp() {
             const db = firebase.database();
 
-            // --- FUNCIÓN: ACTUALIZAR VIDEO ---
-            window.actualizarVideoDestacado = function() {
-                let url = document.getElementById('vid-id').value;
-                let titulo = document.getElementById('vid-titulo').value;
-                let desc = document.getElementById('vid-desc').value;
-
-                // Limpiar ID de Youtube
-                let id = url.includes('v=') ? url.split('v=')[1].split('&')[0] : 
-                         url.includes('be/') ? url.split('be/')[1].split('?')[0] : url;
-
-                if(!id || !titulo) return alert("ID y Título son obligatorios");
+            // 1. Video
+            window.actualizarVideo = function() {
+                const url = document.getElementById('vid-id').value;
+                const id = url.includes('v=') ? url.split('v=')[1].split('&')[0] : 
+                           url.includes('be/') ? url.split('be/')[1].split('?')[0] : url;
 
                 db.ref('configuracion/videoDestacado').set({
                     id: id,
-                    titulo: titulo,
-                    descripcion: desc
-                }).then(() => alert("¡Portada actualizada!"));
+                    titulo: document.getElementById('vid-titulo').value,
+                    descripcion: document.getElementById('vid-desc').value
+                }).then(() => alert("✅ Portada de Video actualizada"));
             };
 
-            // --- FUNCIÓN: PUBLICAR NOTICIA ---
-            window.publicarNoticia = function() {
-                const t = document.getElementById('post-titulo').value;
-                const u = document.getElementById('post-url').value;
-                const c = document.getElementById('post-contenido').value;
+            // 2. Publicación General
+            window.publicarGeneral = function(rama, idT, idU, idC) {
+                const t = document.getElementById(idT).value, u = document.getElementById(idU).value, c = document.getElementById(idC).value;
+                if(!t || !u) return alert("⚠️ Título e Imagen obligatorios");
 
-                if(!t || !u) return alert("Título e Imagen son obligatorios");
+                db.ref(rama).push({
+                    title: t, image: u, content: c,
+                    date: new Date().toLocaleDateString()
+                }).then(() => { alert("🚀 Publicado con éxito"); location.reload(); });
+            };
 
-                db.ref('articulos').push({
-                    title: t,
-                    image: u,
-                    content: c,
-                    date: new Date().toLocaleDateString('es-DO', { day: 'numeric', month: 'short' })
-                }).then(() => {
-                    alert("¡Noticia publicada!");
-                    document.getElementById('post-titulo').value = "";
-                    document.getElementById('post-url').value = "";
-                    document.getElementById('post-contenido').value = "";
+            // 3. Libros con Link
+            window.publicarLibro = function() {
+                const t = document.getElementById('lib-t').value;
+                const u = document.getElementById('lib-u').value;
+                const p = document.getElementById('lib-p').value;
+                const l = document.getElementById('lib-link').value;
+                const c = document.getElementById('lib-c').value;
+
+                if(!t || !u) return alert("⚠️ Título e Imagen son necesarios");
+
+                db.ref('blogLibros').push({
+                    title: t, image: u, price: p, link: l, content: c,
+                    date: new Date().toLocaleDateString()
+                }).then(() => { alert("📚 Libro añadido correctamente"); location.reload(); });
+            };
+
+            // Renderizar Listas para borrar
+            const setupList = (rama, elementId) => {
+                db.ref(rama).on('value', snap => {
+                    const el = document.getElementById(elementId);
+                    el.innerHTML = "";
+                    const data = snap.val();
+                    if(data) Object.keys(data).reverse().forEach(key => {
+                        el.innerHTML += `
+                            <div class="post-item">
+                                <span>${data[key].title.substring(0,20)}...</span>
+                                <button class="btn-delete" onclick="borrarItem('${rama}','${key}')">Borrar</button>
+                            </div>`;
+                    });
                 });
             };
 
-            // --- FUNCIÓN: LISTAR Y BORRAR ---
-            db.ref('articulos').on('value', (snapshot) => {
-                const container = document.getElementById('lista-publicaciones');
-                container.innerHTML = "";
-                const data = snapshot.val();
-
-                if (data) {
-                    Object.keys(data).reverse().forEach(key => {
-                        const post = data[key];
-                        container.innerHTML += `
-                            <div class="post-item">
-                                <img src="${post.image}" class="img-preview">
-                                <div class="post-info">
-                                    <span>${post.title}</span>
-                                    <small>${post.date}</small>
-                                </div>
-                                <button class="btn-delete" onclick="borrarPost('${key}')">Borrar</button>
-                            </div>
-                        `;
-                    });
-                } else {
-                    container.innerHTML = "<p style='text-align:center;'>No hay noticias publicadas.</p>";
-                }
-            });
-
-            window.borrarPost = function(id) {
-                if (confirm("¿Seguro que quieres borrar esta noticia permanentemente?")) {
-                    db.ref('articulos/' + id).remove();
-                }
+            window.borrarItem = (rama, id) => {
+                if(confirm("¿Seguro que deseas eliminar esto?")) db.ref(`${rama}/${id}`).remove();
             };
+
+            setupList('articulos', 'list-index');
+            setupList('proyectoPartido', 'list-proyecto');
+            setupList('blogLibros', 'list-libros');
         }
     </script>
 </body>

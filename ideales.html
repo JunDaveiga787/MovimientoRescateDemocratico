@@ -1,26 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ideales - MRD Blog</title>
 
-    <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
-
-    <link rel="preload" href="css/normalize.css" as="style">
     <link rel="stylesheet" href="css/normalize.css">
+
+    <style>
+        /* --- GRID DE 3 COLUMNAS SEPARADO --- */
+        .conteiner_main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 40px; 
+            padding: 60px 5%; 
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        @media (max-width: 1100px) { .conteiner_main { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 700px) { .conteiner_main { grid-template-columns: 1fr; gap: 30px; } }
+
+        /* --- TARJETAS ESTILO IMAGEN --- */
+        .blog_main {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .blog_main:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .blog_main img {
+            width: 100%;
+            height: 380px; 
+            object-fit: cover;
+            display: block;
+        }
+
+        .ideal-content {
+            padding: 35px 25px;
+            flex-grow: 1;
+        }
+
+        .date-stiled {
+            font-family: 'Montserrat', sans-serif;
+            color: #8C1C1C;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .blog_main h2 {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.7rem;
+            color: #000 !important;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+
+        .blog_main p {
+            font-family: 'Montserrat', sans-serif;
+            color: #444;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* --- VENTANA MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(8px);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 50px auto;
+            width: 90%;
+            max-width: 850px;
+            border-radius: 4px;
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            color: #000;
+            z-index: 10;
+        }
+
+        .modal-body img { width: 100%; height: 450px; object-fit: cover; }
+        .modal-text { padding: 40px; }
+    </style>
 </head>
 <body>
     
     <header>
-        <h1>Movimiento Rescate Democratico  </h1>
-        <p>Dios, Patria y libertad</p>
+        <h1>Movimiento Rescate Democrático</h1>
+        <p>Dios, Patria y Libertad</p>
     </header>
 
     <nav>
@@ -35,53 +141,74 @@
     <div class="conteiner">
         <section>
             <h2>Nuestros Pilares</h2>
-            <p>Estos son los 5 pilares donde se ascienta el MRD como partido</p>
+            <p>Haz clic en cada pilar para profundizar en nuestra visión.</p>
         </section>
     </div>
 
     <main>
         <div class="conteiner_main">
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976834/img/sanear-la-justiacia_jm8vtx.jpg" alt="Democracia Participativa">
-                <h2>1) Sanear la Justicia</h2>
-                <p>Es depurar, limpiar, y corregir las deficiencias, corrupción, vicios
-procesales y la falta de transparencia dentro del sistema judicial.</p>
-            </section>
+            <article class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976834/img/sanear-la-justiacia_jm8vtx.jpg" alt="Justicia">
+                <div class="ideal-content">
+                    <span class="date-stiled">PILAR 01</span>
+                    <h2>1) Sanear la Justicia</h2>
+                    <p>Depurar, limpiar y corregir las deficiencias y la corrupción dentro del sistema judicial.</p>
+                </div>
+            </article>
 
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976827/img/adecentar_la_politica_ko7udm.jpg" alt="Transparencia Total">
-                <h2>2) Adecentar la politica</h2>
-                <p>limpiar, ordenar y elevar el nivel ético de la actividad política, eliminando la
-corrupción y las malas prácticas para enfocarla en el bien común y la honestidad.</p>
-            </section>
+            <article class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976827/img/adecentar_la_politica_ko7udm.jpg" alt="Política">
+                <div class="ideal-content">
+                    <span class="date-stiled">PILAR 02</span>
+                    <h2>2) Adecentar la política</h2>
+                    <p>Elevar el nivel ético eliminando las malas prácticas para enfocarla en el bien común.</p>
+                </div>
+            </article>
 
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976818/img/recuperar-lo-robado_zulvgf.jpg" alt="Justicia Social">
-                <h2>3) Recuperar lo robado</h2>
-                <p>Es la acción legal y el compromiso gubernamental de perseguir, incautar y
-reintegrar al patrimonio público los fondos y bienes sustraídos ilícitamente por funcionarios o
-particulares mediante actos de corrupción.</p>
-            </section>
+            <article class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976818/img/recuperar-lo-robado_zulvgf.jpg" alt="Recuperar">
+                <div class="ideal-content">
+                    <span class="date-stiled">PILAR 03</span>
+                    <h2>3) Recuperar lo robado</h2>
+                    <p>Acción legal para reintegrar al patrimonio público los fondos sustraídos ilícitamente.</p>
+                </div>
+            </article>
 
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976800/img/recuperar-el-pais_s4yldd.jpg" alt="Inclusión y Diversidad">
-                <h2>4) Recuperar el Pais</h2>
-                <p>PAÍS: Es reconstruir una nación tras
-una crisis profunda (política, económica o social), buscando restaurar el tejido social, con la familia como eje
-fundamental, la democracia, la seguridad y la estabilidad económica.</p>
-            </section>
+            <article class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976800/img/recuperar-el-pais_s4yldd.jpg" alt="País">
+                <div class="ideal-content">
+                    <span class="date-stiled">PILAR 04</span>
+                    <h2>4) Recuperar el País</h2>
+                    <p>Reconstruir la nación tras una crisis, restaurando el tejido social y la familia.</p>
+                </div>
+            </article>
 
-            <section class="blog_main">
-                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976826/img/amor-por-el-pais_qfxjoz.jpg" alt="Desarrollo Sostenible">
-                <h2>5) Refundar la Nación</h2>
-                <p>Transformar radicalmente las bases institucionales, políticas, sociales y económicas
-de un país para adaptarlas a nuevas realidades o principios, a menudo tras una crisis profunda.</p>
-            </section>
-
-            
+            <article class="blog_main">
+                <img src="https://res.cloudinary.com/nox-company/image/upload/v1773976826/img/amor-por-el-pais_qfxjoz.jpg" alt="Nación">
+                <div class="ideal-content">
+                    <span class="date-stiled">PILAR 05</span>
+                    <h2>5) Refundar la Nación</h2>
+                    <p>Transformar radicalmente las bases institucionales para un futuro con honestidad.</p>
+                </div>
+            </article>
         </div>
     </main>
 
+    <div id="pilarModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <img id="modalImg" src="" alt="">
+                <div class="modal-text">
+                    <span id="modalTag" class="date-stiled"></span>
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDesc"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -108,20 +235,26 @@ de un país para adaptarlas a nuevas realidades o principios, a menudo tras una 
     </footer>
 
     <script>
-        let lastScrollTop = 0;
-        const nav = document.querySelector('nav');
+        const modal = document.getElementById("pilarModal");
+        const closeModal = document.querySelector(".close-modal");
 
-        window.addEventListener('scroll', () => {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (currentScroll > lastScrollTop && currentScroll > 100) {
-                nav.classList.add('nav-hidden');
-            } else {
-                nav.classList.remove('nav-hidden');
-            }
-            
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        document.querySelectorAll(".blog_main").forEach(article => {
+            article.addEventListener("click", () => {
+                document.getElementById("modalImg").src = article.querySelector("img").src;
+                document.getElementById("modalTitle").innerText = article.querySelector("h2").innerText;
+                document.getElementById("modalTag").innerText = article.querySelector(".date-stiled").innerText;
+                document.getElementById("modalDesc").innerText = article.querySelector("p").innerText;
+                modal.style.display = "block";
+                document.body.style.overflow = "hidden";
+            });
         });
+
+        closeModal.onclick = () => {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        };
+
+        window.onclick = (e) => { if (e.target == modal) closeModal.onclick(); };
     </script>
 </body>
 </html>

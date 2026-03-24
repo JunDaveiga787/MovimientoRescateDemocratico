@@ -3,12 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MRD Blog</title>
+    <title>MRD Blog - Inicio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/normalize.css">
+    <style>
+        /* --- ESTILO MINIMALISTA PARA EL BOTÓN (OUTLINE) --- */
+        .btn-download {
+            display: inline-block;
+            background-color: transparent;
+            color: #8C1C1C !important;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 25px;
+            border: 2px solid #8C1C1C;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            align-self: flex-start; /* Asegura que el botón no se estire */
+        }
+
+        .btn-download:hover {
+            background-color: #8C1C1C;
+            color: #fff !important;
+        }
+
+        /* DISEÑO DE TARJETAS */
+        .dynamic-post, .card-video-full {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #efefef;
+            margin-bottom: 25px;
+            transition: transform 0.2s ease;
+            height: 100%; /* Permite consistencia en grids */
+        }
+
+        .dynamic-post:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .dynamic-post img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        /* CUERPO DE TEXTO - SIEMPRE ARRIBA */
+        .video-body {
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Empuja todo el contenido hacia arriba */
+            flex-grow: 1; /* Ocupa el espacio sobrante pero mantiene el texto arriba */
+        }
+
+        /* TÍTULOS EN NEGRO PURO */
+        .video-body h2 {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.5rem;
+            color: #000000 !important;
+            margin: 5px 0 10px 0;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .video-body p {
+            color: #444;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .date-text {
+            color: #8C1C1C;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .video-header {
+            height: 450px;
+            background: #000;
+        }
+    </style>
 </head>
 <body>
     
@@ -19,7 +111,7 @@
 
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="ideales.html">Pilares</a></li>
             <li><a href="proyecto-de-partido.html">Proyecto de Gobierno</a></li>
             <li><a href="blog.html">Libros</a></li>
@@ -29,7 +121,7 @@
     <div class="conteiner">
         <section>
             <h2>Bienvenidos al Blog del MRD</h2>
-            <p>Artículos de política, economía y sociedad para informar a los ciudadanos.</p>
+            <p>Información institucional y artículos de interés nacional.</p>
         </section>
     </div>
 
@@ -39,21 +131,21 @@
         </div>
 
         <div class="conteiner_main" id="mrd-feed">
-    <section class="blog_main card-video-full">
-        <div class="video-header">
-            <iframe id="main-iframe" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+            <section class="card-video-full" style="margin-bottom: 35px;">
+                <div class="video-header">
+                    <iframe id="main-iframe" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-body">
+                    <span class="date-text">Video Destacado</span>
+                    <h2 id="main-vid-title">Cargando...</h2>
+                    <p id="main-vid-desc">...</p>
+                    <a href="https://www.youtube.com/@RescateDemocratico" target="_blank" class="btn-download">Ver Canal de YouTube</a>
+                </div>
+            </section>
         </div>
-        <div class="video-body">
-            <small>Destacado</small>
-            <h2 id="main-vid-title">Cargando...</h2>
-            <p id="main-vid-desc">Espere un momento...</p>
-            <a href="https://www.youtube.com/@RescateDemocratico" class="btn-download">Ver Canal</a>
-        </div>
-    </section>
-    
-    </div>
     </main>
 
+    <!--footer-->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -83,30 +175,33 @@
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
 
     <script>
-        const configMRD = {
-            apiKey: "BG8qmwxVTS10uX8oB45l62Ta8DSfqlPrEMr7xtOd4S4ybcDT1xlnCxZQFen9fVb5yHok0FKdaEXQdOe1NRWBnSU",
-            authDomain: "mrd-store-a1316.firebaseapp.com",
-            databaseURL: "https://mrd-store-a1316-default-rtdb.firebaseio.com",
-            projectId: "mrd-store-a1316"
-        };
-
+        const configMRD = { databaseURL: "https://mrd-store-a1316-default-rtdb.firebaseio.com" };
         if (!firebase.apps.length) firebase.initializeApp(configMRD);
         const database = firebase.database();
         const feedContainer = document.getElementById('mrd-feed');
 
-        database.ref('articulos').on('value', (snapshot) => {
-            // Borramos solo los artículos dinámicos previos (clase .dynamic-post)
-            document.querySelectorAll('.dynamic-post').forEach(el => el.remove());
+        // Sincronizar Video
+        database.ref('configuracion/videoDestacado').on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('main-iframe').src = `https://www.youtube-nocookie.com/embed/${data.id}`;
+                document.getElementById('main-vid-title').innerText = data.titulo;
+                document.getElementById('main-vid-desc').innerText = data.descripcion;
+            }
+        });
 
+        // Cargar Artículos Dinámicos
+        database.ref('articulos').on('value', (snapshot) => {
+            document.querySelectorAll('.dynamic-post').forEach(el => el.remove());
             const data = snapshot.val();
             if (data) {
                 Object.keys(data).reverse().forEach(key => {
                     const post = data[key];
                     const articleHTML = `
-                        <section class="blog_main dynamic-post">
+                        <section class="dynamic-post">
                             <img src="${post.image}" alt="${post.title}">
                             <div class="video-body">
-                                <small style="color: #8C1C1C; font-weight: bold;">${post.date || 'NOTICIA'}</small>
+                                <span class="date-text">${post.date || 'Noticia'}</span>
                                 <h2>${post.title}</h2>
                                 <p>${post.content}</p>
                             </div>
@@ -116,91 +211,6 @@
                 });
             }
         });
-
-        // Script para el menú sticky
-        let lastScrollTop = 0;
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            if (currentScroll > lastScrollTop && currentScroll > 100) nav.classList.add('nav-hidden');
-            else nav.classList.remove('nav-hidden');
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        });
-
-        // Dentro de tu script de Firebase en index.html
-const db = firebase.database();
-
-// ESCUCHAR CAMBIOS DEL VIDEO DESTACADO
-db.ref('configuracion/videoDestacado').on('value', (snapshot) => {
-    const data = snapshot.val();
-    if (data) {
-        // Actualiza el video
-        document.getElementById('main-iframe').src = `https://www.youtube-nocookie.com/embed/${data.id}`;
-        // Actualiza el texto
-        document.getElementById('main-vid-title').innerText = data.titulo;
-        document.getElementById('main-vid-desc').innerText = data.descripcion;
-    }
-});
-
-// (Tu código anterior de 'articulos' sigue debajo igual...)
-
     </script>
-
-    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
-
-<script>
-    // Configuración de tu base de datos
-    const configMRD = {
-        apiKey: "BG8qmwxVTS10uX8oB45l62Ta8DSfqlPrEMr7xtOd4S4ybcDT1xlnCxZQFen9fVb5yHok0FKdaEXQdOe1NRWBnSU",
-        authDomain: "mrd-store-a1316.firebaseapp.com",
-        databaseURL: "https://mrd-store-a1316-default-rtdb.firebaseio.com",
-        projectId: "mrd-store-a1316"
-    };
-
-    // Inicializar Firebase
-    if (!firebase.apps.length) firebase.initializeApp(configMRD);
-    const database = firebase.database();
-    const feedContainer = document.getElementById('mrd-feed');
-
-    // --- 1. ACTUALIZAR VIDEO Y TEXTO DE PORTADA ---
-    database.ref('configuracion/videoDestacado').on('value', (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-            const iframe = document.getElementById('main-iframe');
-            const titulo = document.getElementById('main-vid-title');
-            const desc = document.getElementById('main-vid-desc');
-
-            if(iframe) iframe.src = `https://www.youtube-nocookie.com/embed/${data.id}`;
-            if(titulo) titulo.innerText = data.titulo;
-            if(desc) desc.innerText = data.descripcion;
-        }
-    });
-
-    // --- 2. CARGAR PUBLICACIONES (IMÁGENES) ---
-    database.ref('articulos').on('value', (snapshot) => {
-        // Borramos publicaciones viejas para que no se dupliquen (manteniendo el video)
-        document.querySelectorAll('.dynamic-post').forEach(el => el.remove());
-
-        const data = snapshot.val();
-        if (data) {
-            // Convertimos a array y revertimos para ver lo más nuevo primero
-            Object.keys(data).reverse().forEach(key => {
-                const post = data[key];
-                const html = `
-                    <section class="blog_main dynamic-post">
-                        <img src="${post.image}" alt="${post.title}">
-                        <div class="video-body">
-                            <small style="color: #8C1C1C; font-weight: bold;">${post.date || 'NOTICIA'}</small>
-                            <h2>${post.title}</h2>
-                            <p>${post.content}</p>
-                        </div>
-                    </section>
-                `;
-                feedContainer.insertAdjacentHTML('beforeend', html);
-            });
-        }
-    });
-</script>
 </body>
 </html>
